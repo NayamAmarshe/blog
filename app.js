@@ -16,10 +16,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
+var posts = [];
+
 //routes
 app.get("/", (req, res) => {
   res.render("home", {
-    homeStartingContent: homeStartingContent
+    homeStartingContent: homeStartingContent,
+    posts: posts
   });
 });
 
@@ -48,7 +51,8 @@ app.post("/compose", (req, res) => {
     title: req.body.postTitle,
     body: req.body.postBody
   }
-  console.log(post);
+  posts.push(post);
+  res.redirect("/");
 })
 
 //listening
