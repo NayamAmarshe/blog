@@ -35,6 +35,21 @@ app.get("/contact", (req, res) => {
   });
 })
 
+app.get("/compose", (req, res) => {
+  res.render("compose", {});
+})
+
+app.post("/", (req, res) => {
+  res.send('POST request to the homepage')
+})
+
+app.post("/compose", (req, res) => {
+  const post = {
+    title: req.body.postTitle,
+    body: req.body.postBody
+  }
+  console.log(post);
+})
 
 //listening
 app.listen(3000, function() {
